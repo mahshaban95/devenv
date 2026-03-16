@@ -31,11 +31,11 @@ RUN mkdir -p /usr/share/fonts && \
     rm /tmp/JetBrainsMono.tar.xz
 
 WORKDIR /tmp
-RUN curl -fLO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz && \
-    tar xzf nvim-linux64.tar.gz && \
-    mv nvim-linux64 /opt/nvim && \
+RUN curl -fLO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && \
+    tar xzf nvim-linux-x86_64.tar.gz && \
+    mv nvim-linux-x86_64 /opt/nvim && \
     ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim && \
-    rm nvim-linux64.tar.gz
+    rm nvim-linux-x86_64.tar.gz
 
 RUN curl -fLO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
     chmod +x kubectl && \
