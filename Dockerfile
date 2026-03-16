@@ -17,8 +17,6 @@ RUN apt-get update && apt-get install -y \
     ripgrep \
     fd-find \
     fzf \
-    lazygit \
-    tree-sitter-cli \
     postgresql-client \
     tmux \
     xclip \
@@ -54,6 +52,17 @@ RUN curl -fLo /tmp/e1s.tar.gz https://github.com/keidarcy/e1s/releases/latest/do
     rm /tmp/e1s.tar.gz
 
 RUN curl -fsSL https://opencode.ai/install | bash
+
+RUN LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*') && \
+    curl -fLo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz" && \
+    tar xzf /tmp/lazygit.tar.gz -C /tmp && \
+    mv /tmp/lazygit /usr/local/bin/ && \
+    rm /tmp/lazygit.tar.gz
+
+RUN curl -fLo /tmp/tree-sitter-linux-x64.gz https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-x64.gz && \
+    gunzip /tmp/tree-sitter-linux-x64.gz && \
+    chmod +x /tmp/tree-sitter-linux-x64 && \
+    mv /tmp/tree-sitter-linux-x64 /usr/local/bin/tree-sitter
 
 WORKDIR $HOME
 
