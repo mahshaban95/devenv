@@ -31,7 +31,7 @@ RUN mkdir -p /usr/share/fonts && \
     rm /tmp/JetBrainsMono.tar.xz
 
 WORKDIR /tmp
-RUN curl -fLO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && \
+RUN curl -fLO https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.tar.gz && \
     tar xzf nvim-linux-x86_64.tar.gz && \
     mv nvim-linux-x86_64 /opt/nvim && \
     ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim && \
@@ -45,26 +45,26 @@ RUN curl -fLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/1.11.2
     unzip /tmp/terraform.zip -d /usr/local/bin && \
     rm /tmp/terraform.zip
 
-RUN curl -fLo /tmp/k9s.tar.gz https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz && \
+RUN curl -fLo /tmp/k9s.tar.gz https://github.com/derailed/k9s/releases/download/v0.40.10/k9s_Linux_amd64.tar.gz && \
     tar xzf /tmp/k9s.tar.gz -C /usr/local/bin k9s && \
     rm /tmp/k9s.tar.gz
 
-RUN curl -fLo /tmp/e1s.tar.gz https://github.com/keidarcy/e1s/releases/latest/download/e1s_Linux_x86_64.tar.gz && \
-    tar xzf /tmp/e1s.tar.gz -C /usr/local/bin e1s && \
+RUN curl -fLo /tmp/e1s.tar.gz https://github.com/keidarcy/e1s/releases/download/v1.0.5/e1s_1.0.5_linux_amd64.tar.gz && \
+    tar xzf /tmp/e1s.tar.gz -C /tmp && \
+    mv /tmp/e1s /usr/local/bin/ && \
     rm /tmp/e1s.tar.gz
 
 RUN curl -fsSL https://opencode.ai/install | bash
 
-RUN LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*') && \
-    curl -fLo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz" && \
+RUN curl -fLo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v0.49.0/lazygit_0.49.0_Linux_x86_64.tar.gz" && \
     tar xzf /tmp/lazygit.tar.gz -C /tmp && \
     mv /tmp/lazygit /usr/local/bin/ && \
     rm /tmp/lazygit.tar.gz
 
-RUN curl -fLo /tmp/tree-sitter-linux-x64.gz https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-x64.gz && \
-    gunzip /tmp/tree-sitter-linux-x64.gz && \
-    chmod +x /tmp/tree-sitter-linux-x64 && \
-    mv /tmp/tree-sitter-linux-x64 /usr/local/bin/tree-sitter
+RUN curl -fLo /tmp/tree-sitter.gz https://github.com/tree-sitter/tree-sitter/releases/download/v0.25.4/tree-sitter-linux-x64.gz && \
+    gunzip /tmp/tree-sitter.gz && \
+    chmod +x /tmp/tree-sitter && \
+    mv /tmp/tree-sitter /usr/local/bin/tree-sitter
 
 WORKDIR $HOME
 
