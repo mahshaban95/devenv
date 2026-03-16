@@ -16,9 +16,7 @@ docker build -t devenv:latest .
 ## Run Container
 
 ```bash
-docker run -w /workspace -it --rm \
-  -v $(pwd):/workspace \
-  devenv:latest
+docker run -it --rm devenv:latest
 ```
 
 ## Pull from GHCR
@@ -30,10 +28,12 @@ docker pull ghcr.io/<YOUR_GITHUB_USERNAME>/devenv:latest
 ## Run from GHCR
 
 ```bash
-docker run -w /workspace -it --rm \
-  -v $(pwd):/workspace \
-  ghcr.io/<YOUR_GITHUB_USERNAME>/devenv:latest
+docker run -it --rm ghcr.io/<YOUR_GITHUB_USERNAME>/devenv:latest
 ```
+
+## Persistence (Optional)
+
+To persist data across sessions, consider using cloud storage solutions like Cloudflare R2 with rclone. Configuration for persistence will be handled separately.
 
 ## Included Tools
 
