@@ -66,21 +66,21 @@ RUN curl -fLo /tmp/tree-sitter.gz https://github.com/tree-sitter/tree-sitter/rel
     chmod +x /tmp/tree-sitter && \
     mv /tmp/tree-sitter /usr/local/bin/tree-sitter
 
-WORKDIR $HOME
+WORKDIR /root
 
-RUN git clone --depth 1 https://github.com/LazyVim/starter ~/.config/nvim && \
-    rm -rf ~/.config/nvim/.git
+RUN git clone --depth 1 https://github.com/LazyVim/starter /root/.config/nvim && \
+    rm -rf /root/.config/nvim/.git
 
-COPY config/nvim/lua/config/options.lua ~/.config/nvim/lua/config/options.lua
-COPY config/nvim/lua/config/keymaps.lua ~/.config/nvim/lua/config/keymaps.lua
-COPY config/nvim/lua/config/autocmds.lua ~/.config/nvim/lua/config/autocmds.lua
-COPY config/nvim/lua/plugins/ ~/.config/nvim/lua/plugins/
-COPY config/nvim/stylua.toml ~/.config/nvim/stylua.toml
+COPY config/nvim/lua/config/options.lua /root/.config/nvim/lua/config/options.lua
+COPY config/nvim/lua/config/keymaps.lua /root/.config/nvim/lua/config/keymaps.lua
+COPY config/nvim/lua/config/autocmds.lua /root/.config/nvim/lua/config/autocmds.lua
+COPY config/nvim/lua/plugins/ /root/.config/nvim/lua/plugins/
+COPY config/nvim/stylua.toml /root/.config/nvim/stylua.toml
 
-RUN mkdir -p ~/.config/tmux/plugins && \
-    git clone --depth 1 https://github.com/catppuccin/tmux ~/.config/tmux/plugins/catppuccin/tmux
+RUN mkdir -p /root/.config/tmux/plugins && \
+    git clone --depth 1 https://github.com/catppuccin/tmux /root/.config/tmux/plugins/catppuccin/tmux
 
-COPY config/tmux/.tmux.conf ~/.tmux.conf
+COPY config/tmux/.tmux.conf /root/.tmux.conf
 
 WORKDIR /workspace
 
