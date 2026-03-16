@@ -1,0 +1,11 @@
+vim.keymap.set("n", "<leader>cf", function()
+  local filename = vim.fn.expand("%:t")
+  vim.fn.setreg("+", filename)
+  vim.notify("Copied Filename: " .. filename)
+end, { desc = "Copy Filename" })
+
+vim.keymap.set("n", "<leader>cp", function()
+  local path = vim.fn.expand("%")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied Relative Path: " .. path)
+end, { desc = "Copy Relative Path" })
