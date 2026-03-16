@@ -21,12 +21,14 @@ RUN apt-get update && apt-get install -y \
     tmux \
     xclip \
     clang \
+    fontconfig \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /usr/share/fonts && \
-    curl -fLo "/usr/share/fonts/JetBrainsMonoNerdFont-Regular.ttf" \
-    https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMonoNerdFont-Regular.ttf && \
-    fc-cache -f /usr/share/fonts
+    curl -fLo /tmp/JetBrainsMono.tar.xz "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.tar.xz" && \
+    tar -xf /tmp/JetBrainsMono.tar.xz -C /usr/share/fonts && \
+    fc-cache -f /usr/share/fonts && \
+    rm /tmp/JetBrainsMono.tar.xz
 
 WORKDIR /tmp
 RUN curl -fLO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz && \
