@@ -16,19 +16,23 @@ docker build -t devenv:latest .
 ## Run Container
 
 ```bash
-docker run -it --rm devenv:latest
+# Run interactively (ephemeral)
+docker run -it --rm ghcr.io/mahshaban95/devenv:latest
+
+# Run in background (persistent)
+docker run -dit --name devenv ghcr.io/mahshaban95/devenv:latest
+
+# Attach to running container
+docker exec -it devenv bash
+
+# Or attach directly
+docker attach devenv
 ```
 
 ## Pull from GHCR
 
 ```bash
-docker pull ghcr.io/<YOUR_GITHUB_USERNAME>/devenv:latest
-```
-
-## Run from GHCR
-
-```bash
-docker run -it --rm ghcr.io/<YOUR_GITHUB_USERNAME>/devenv:latest
+docker pull ghcr.io/mahshaban95/devenv:latest
 ```
 
 ## Persistence (Optional)
